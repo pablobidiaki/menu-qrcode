@@ -8,7 +8,7 @@ import ItemLayout from '../../components/item_layout/item_layout';
 const Home = () => {
     return(
         <>
-            <Navbar />
+            <Navbar/>
             <img className='w-screen h-[18vh] brightness-50' src='https://i.imgur.com/w6x1ayy.jpeg'/>
             <Title id='combos' text={texts.titles.combos} />
             <ItemLayout />
