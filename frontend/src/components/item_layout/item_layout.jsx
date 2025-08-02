@@ -1,8 +1,14 @@
 import './item_layout.css'
 
-const ItemLayuout = ({img, name, descrition, price, available}) => {
+const ItemLayout = ({img, name, descrition, price, available}) => {
     return(
-        <div>
+        <div className=''>
+            <div>
+                <img src='https://i.imgur.com/JEAcVln.jpeg'/>
+            </div>
+            <div></div>
         </div>
     )
 }
+
+export default ItemLayout;
