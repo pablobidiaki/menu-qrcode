@@ -8,7 +8,9 @@ const texts = {
         bebidas: "Bebidas",
         bebidas_alcoolicas: "Bebidas alcoólicas",
         sobremesa: "Sobremesa"
-    }
+    },
+
+    adicionar_carrinho: "Adicionar ao Pedido.",
 }
 
 export default texts;
