@@ -2,20 +2,23 @@ import '../../App.css'
 import texts from '../../texts/texts';
 
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const ItemLayout = ({img, name, descrition, original_price, promotion_price, available}) => {
 
     const [promotionPrice, setPromotionPrice] = useState('20.99')
     const [originalPrice, setOriginalPrice] = useState('25.99')
 
+    const navigate = useNavigate();
+
     return(
-        <div className='m-4 p-4 rounded-xl bg-gray-300'>
+        <div className='m-4 p-4 rounded-xl bg-gray-300 font-sans'>
             <div>
                 <img className='rounded-xl' src='https://i.imgur.com/BZU9Hem.jpeg'/>
             </div>
             <div>
                 <h1 className='text-black font-extrabold text-3xl my-4'>Combo X-Burger.</h1>
-                <p className='italic text-md text-gray-600 text-justify'>Acompanha nosso X-Burger, uma porção de fritas média e uma latra do refrigerante da sua preferência.</p>
+                <p className='italic text-md text-gray-600 text-justify'>Acompanha nosso X-Burger, uma porção de fritas média e uma lata do refrigerante da sua preferência.</p>
                 <div className='flex justify-between mt-8'>
                     <p className='text-xl font-bold text-green-500'>R${promotionPrice === '' ? originalPrice : promotionPrice}</p>
                     {promotionPrice  && (
@@ -23,7 +26,7 @@ const ItemLayout = ({img, name, descrition, original_price, promotion_price, ava
                     )}
                 </div>
             </div>
-            <button className='bg-orange-500 text-xl text-white font-semibold w-full p-2 rounded-lg  mt-4'>{texts.adicionar_carrinho}</button>
+            <button className='bg-orange-500 text-xl text-white font-semibold w-full p-2 rounded-lg  mt-4' onClick={() => navigate("/details_item")}>{texts.adicionar_pedido}</button>
         </div>
     )
 }
