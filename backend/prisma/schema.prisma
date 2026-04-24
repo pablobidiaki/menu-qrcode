@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,8 +7,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Pedido {
+model Order {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  pedido String
-  mesa String
+  items Json
+  table String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Table {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  orders Json
+  tableNumber Int
+  total Float
+  isInUse Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Sandwich {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  description String
+  price Float
+  promotionPrice Float?
+  ingredients Json
+  images String[]
+  type String
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SideDishes {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  description String
+  size String
+  price Float
+  promotionPrice Float?
+  images String[]
+  type String
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Drinks {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  description String
+  price Float
+  promotionPrice Float?
+  images String[]
+  isAlcoholic Boolean
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Dessert {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  description String
+  price Float
+  promotionPrice Float?
+  images String[]
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
