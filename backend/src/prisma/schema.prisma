@@ -11,6 +11,7 @@ model Order {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   items Json
   table String
+  status String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
