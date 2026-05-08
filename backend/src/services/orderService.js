@@ -1,10 +1,10 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 export const sendNewOrder = async (data) => {
-    if (!data.table) throw new Error(`Table number is required`);
-    if (!data.items) throw new Error(`No items added to the order`);
+    if (!data.table) throw new Error(`Table number is required`)
+    if (!data.items) throw new Error(`No items added to the order`)
 
     const order = await prisma.order.create({
         data:{
@@ -28,15 +28,20 @@ export const getAllOrders = async () => {
 }
 
 export const getOrderById  = async (id) => {
-    const order = await prisma.order.findUnique({
-        where: {id: id},
-    });
+    try{
+        const order = await prisma.order.findUnique({
+            where: {id: id},
+        })
 
-    if(!order) throw new Error(`Order by id ${id} not found`)
+        console.log(`Order by id ${id} viewed!`)
 
-    console.log(`Order by id ${id} viewed!`)
+        return order
+    }
+    catch(error){
+        if(error.code === 'P2025') throw new Error(`Order by id ${id} not found`)
 
-    return order
+        throw new Error(`Internal server error during deletion`)
+    }
 }
 
 export const deleteAllOrders = async () => {
@@ -48,26 +53,38 @@ export const deleteAllOrders = async () => {
 }
 
 export const deleteOrderById = async (id) => {
-    const order = await prisma.order.delete({
-        where: {id: id}
-    })
+    try{
+        const order = await prisma.order.delete({
+            where: { id: id }
+        })
 
-    console.log(`Order by id ${id} deleted!`)
+        console.log(`Order by id ${id} deleted!`)
 
-    return order
+        return order
+    } 
+    catch(error){
+        if(error.code === 'P2025') throw new Error(`Order by id ${id} not found`)
+        throw new Error(`Internal server error during deletion`)
+    }
 }
 
 export const updateOrderById = async (id, data) => {
-    const order = await prisma.order.update({
-        where: {id: id},
-        data: {
-            items: data.items,
-            table: data.table,
-            status: data.status
-        }
-    })
+    try{
+        const order = await prisma.order.update({
+            where: {id: id},
+            data: {
+                items: data.items,
+                table: data.table,
+                status: data.status
+            }
+        })
 
-    console.log(`Order by id ${id} updated!`)
+        console.log(`Order by id ${id} updated!`)
 
-    return order
+        return order
+    }
+    catch(error){
+        if(error.code === 'P2025') throw new Error(`Order by id ${id} not found`)
+        throw new Error(`Internal server error during deletion`)
+    }
 }

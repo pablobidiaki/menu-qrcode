@@ -2,8 +2,8 @@ import * as orderService from "../services/orderService.js"
 
 export const sendOrder = async (req, res) => {
     try{
-        const data_order = req.body
-        const newOrder = await orderService.sendNewOrder(data_order)
+        const dataOrder = req.body
+        const newOrder = await orderService.sendNewOrder(dataOrder)
 
         res.status(201).json({
             message: `Order sent to success`,
@@ -33,8 +33,8 @@ export const getAllOrders = async (req, res) => {
 
 export const getOrderById  = async (req, res) => {
     try{
-        const id_order = req.params.id
-        const getOrderById = await orderService.getOrderById (id_order)
+        const idOrder = req.params.id
+        const getOrderById = await orderService.getOrderById (idOrder)
 
         res.status(200).json({
             message: `Order by id ${id_order}viewed`,
@@ -64,9 +64,9 @@ export const deleteAllOrders = async (req, res) => {
 
 export const deleteOrderById = async (req, res) => {
     try{
-        const id_order = req.params.id
+        const idOrder = req.params.id
 
-        const order = await orderService.deleteOrderById(id_order)
+        const order = await orderService.deleteOrderById(idOrder)
 
         res.status(200).json({
             message: `Order by id ${id_order} deleted`,
@@ -81,13 +81,13 @@ export const deleteOrderById = async (req, res) => {
 
 export const updateOrderById = async (req, res) => {
     try{
-        const id_order = req.params.id
-        const data_order = req.body
+        const idOrder = req.params.id
+        const dataOrder = req.body
 
-        const order = await orderService.updateOrderById(id_order, data_order)
+        const order = await orderService.updateOrderById(idOrder, dataOrder)
 
         res.status(200).json({
-            message: `Order by id ${id_order} deleted`,
+            message: `Order by id ${idOrder} deleted`,
             order: order
         })
     }
