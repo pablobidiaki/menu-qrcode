@@ -18,15 +18,22 @@ const Home = () => {
                 <InformationItem icon={CircleDollarSign} text={"Preços justos pensado em todos."}/>
             </div>
             <HomeTitle id='combos' text={texts.titles.combos} />
-            <ItemLayout />
+            <ItemLayout type ='Combo' itemType='Combo'/>
             <HomeTitle id='lanches_hamburguer' text={texts.titles.lanches_hamburguer} />
+            <ItemLayout type ='Hamburguer' itemType='Hamburguer'/>
             <HomeTitle id='lanches_frango' text={texts.titles.lanches_frango} />
+            <ItemLayout type ='Frango' itemType='Hamburguer'/>
             <HomeTitle id='lanches_veganos' text={texts.titles.lanches_veganos} />
+            <ItemLayout type ='Vegano' itemType='Hamburguer'/>
             <HomeTitle id='acompanhamentos' text={texts.titles.acompanhamentos} />
+            <ItemLayout type ='Acompanhamento' itemType='Acompanhamento'/>
             <HomeTitle id='bebidas' text={texts.titles.bebidas} />
+            <ItemLayout type ='Bebida' itemType='Bebida'/>
             <HomeTitle id='bebidas_alcoolicas' text={texts.titles.bebidas_alcoolicas} />
+            <ItemLayout type ='Bebida Alcoolica' itemType='Bebida'/>
             <HomeTitle id='sobremesas' text={texts.titles.sobremesa} />
-            <Footer />
+            <ItemLayout type ='Sobremesa' itemType='Sobremesa'/>
+            {/* <Footer /> */}
         </>
     )
 }

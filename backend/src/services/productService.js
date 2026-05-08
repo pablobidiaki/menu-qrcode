@@ -199,7 +199,7 @@ export const addDrink = async (data) => {
             price: data.price,
             promotionPrice: data.promotionPrice,
             images: data.images,
-            isAlcoholic: data.isAlcoholic,
+            type: data.type,
             isActive: data.isActive
         }
     })
@@ -267,7 +267,7 @@ export const updateDrinkById = async (id, data) => {
                 price: data.price,
                 promotionPrice: data.promotionPrice,
                 images: data.images,
-                isAlcoholic: data.isAlcoholic,
+                type: data.type,
                 isActive: data.isActive
             }
         })
@@ -291,6 +291,7 @@ export const addDessert = async (data) => {
             price: data.price,
             promotionPrice: data.promotionPrice,
             images: data.images,
+            type: data.type,
             isActive: data.isActive
         }
     })
@@ -358,6 +359,7 @@ export const updateDessertById = async (id, data) => {
                 price: data.price,
                 promotionPrice: data.promotionPrice,
                 images: data.images,
+                type: data.type,
                 isActive: data.isActive
             }
         })

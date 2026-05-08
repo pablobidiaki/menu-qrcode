@@ -1,13 +1,15 @@
-import express from "express"
+import express from 'express'
+import cors from 'cors'
 
 import { error, log } from "node:console"
 
 import orderRoutes from "./routes/orderRoutes.js"
 import productRoutes from "./routes/productRoutes.js"
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 // Run Server
 app.listen(3000, () => {

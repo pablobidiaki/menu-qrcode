@@ -25,8 +25,8 @@ const texts = {
     meu_carrinho: "Meu carrinho",
     pedido_atual: "Pedido atual",
     pedido_total: "Pedido Total",
-    tempo_estimado: "Tempo estimado"
-
+    tempo_estimado: "Tempo estimado",
+    item_indisponivel: "Item indisponível"
 }
 
 export default texts;

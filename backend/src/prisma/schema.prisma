@@ -61,7 +61,7 @@ model Drinks {
   price Float
   promotionPrice Float?
   images String[]
-  isAlcoholic Boolean
+  type String
   isActive Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -74,6 +74,7 @@ model Dessert {
   price Float
   promotionPrice Float?
   images String[]
+  type String
   isActive Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
