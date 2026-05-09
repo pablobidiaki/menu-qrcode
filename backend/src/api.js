@@ -19,5 +19,5 @@ app.listen(3000, () => {
 // Orders routes
 app.use('/orders', orderRoutes)
 
-// Product routes, can add sandwich, side dish, drink and dessert
-app.use('/product', productRoutes)
+// Product routes
+app.use('/products', productRoutes)

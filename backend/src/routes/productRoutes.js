@@ -4,32 +4,14 @@ import * as productController from "../controllers/productController.js"
 
 const router = express.Router()
 
-router.post("/sandwich", productController.addSandwich)
-router.post("/sidedish", productController.addSideDish)
-router.post("/drink", productController.addDrink)
-router.post("/dessert", productController.addDessert)
+router.post("/", productController.addProduct)
 
-router.get("/sandwich", productController.getAllSandwiches)
-router.get("/sidedish", productController.getAllSideDishes)
-router.get("/drink", productController.getAllDrinks)
-router.get("/dessert", productController.getAllDesserts)
-router.get("/sandwich/:id", productController.getSandwichById)
-router.get("/sidedish/:id", productController.getSideDishById)
-router.get("/drink/:id", productController.getDrinkById)
-router.get("/dessert/:id", productController.getDessertById)
+router.get("/", productController.getAllProducts)
+router.get("/:id", productController.getProductById)
 
-router.delete("/sandwich", productController.deleteAllSandwiches)
-router.delete("/sidedish", productController.deleteAllSideDishes)
-router.delete("/drink", productController.deleteAllDrinks)
-router.delete("/dessert", productController.deleteAllDesserts)
-router.delete("/sandwich/:id", productController.deleteSandwichById)
-router.delete("/sidedish/:id", productController.deleteSideDishById)
-router.delete("/drink/:id", productController.deleteDrinkById)
-router.delete("/dessert/:id", productController.deleteDessertById)
+router.delete("/", productController.deleteAllProducts)
+router.delete("/:id", productController.deleteProductById)
 
-router.put("/sandwich/:id", productController.updateSandwichById)
-router.put("/sidedish/:id", productController.updateSideDishById)
-router.put("/drink/:id", productController.updateDrinkById)
-router.put("/dessert/:id", productController.updateDessertById)
+router.put("/:id", productController.updateProductById)
 
 export default router

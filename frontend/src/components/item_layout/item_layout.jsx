@@ -1,48 +1,58 @@
 import '../../App.css'
 import { productService } from '../../services/productService';
+import  ItemModal from '../item_modal/item_modal'
 import texts from '../../texts/texts';
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const ItemLayout = ({type, itemType}) => {
+    const navigate = useNavigate();
 
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-
-    const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [selectedProduct, setSelectedProduct] = useState(null)
 
     useEffect(() => {
-        const loadProduct = async () =>{
+        const loadProducts = async () =>{
             try{
                 setLoading(true)
-                if (itemType === 'Hamburguer' || itemType === 'Combo'){
-                    const data = await productService.getSandwiches()
-                    setProduct(data.sandwiches)
-                }
-                else if (itemType === 'Acompanhamento'){
-                    const data = await productService.getSideDishes()
-                    setProduct(data.sideDishes)
-                }
-                else if (itemType === 'Bebida'){
-                    const data = await productService.getDrinks()
-                    setProduct(data.drink)
-                }
-                else if (itemType === 'Sobremesa'){
-                    const data = await productService.getDesserts()
-                    setProduct(data.desserts)
-                }
+                const data = await productService.getProducts()
+                setProduct(data.products)
             }catch(error){
-                console.error("Erro ao carregar cardápio:", error);
-                setError("Não foi possível carregar os lanches.");
+                console.error("Erro ao carregar os produtos:", error);
+                setError("Não foi possível carregar os produtos.");
             }finally{
                 setLoading(false)
             }
         }
 
-        loadProduct()
+        loadProducts()
     }, [])
+
+    // Scrolling is blocked when ItemModal is open
+    useEffect(() => {
+        if (isModalOpen)
+            document.body.style.overflow = 'hidden'
+        else
+            document.body.style.overflow = 'unset';
+    }, [isModalOpen])
+
+    const handleItemClick = (item) => {
+        if (item.type !== 'Bebida' && item.type !== 'Bebida Alcoolica' && item.type !== 'Acompanhamento' )
+            navigate(`/details_item/${item.id}`);
+        else {
+            setSelectedProduct(item);
+            setIsModalOpen(true);
+        }
+    };
+
+    const handleOpenModal = (product) => {
+        setSelectedProduct(product)
+        setIsModalOpen(true)
+    }
 
     return(
         <>
@@ -87,7 +97,7 @@ const ItemLayout = ({type, itemType}) => {
                                                              p-2 
                                                              rounded-lg  
                                                              mt-4' 
-                                                    onClick={() => navigate("/details_item")}>
+                                                    onClick={() => handleItemClick(item)}>
                                                     {texts.adicionar_pedido}
                                             </button>
                                         )
@@ -98,6 +108,11 @@ const ItemLayout = ({type, itemType}) => {
                     </>
                 ))
             }
+            <ItemModal 
+                isOpen={isModalOpen} 
+                product={selectedProduct} 
+                onClose={() => setIsModalOpen(false)}
+            />
         </>
 
     )

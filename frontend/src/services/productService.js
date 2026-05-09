@@ -1,20 +1,12 @@
 import api from "./api";
 
 export const productService = {
-    getSandwiches: async () => {
-        const response = await api.get('/product/sandwich')
+    getProducts: async () => {
+        const response = await api.get('/products')
         return response.data
     },
-    getSideDishes: async () => {
-        const response = await api.get('/product/sideDish')
-        return response.data
-    },
-    getDrinks: async () => {
-        const response = await api.get('/product/drink')
-        return response.data
-    },
-    getDesserts: async () => {
-        const response = await api.get('/product/dessert')
+    getProductById: async (id) => {
+        const response = await api.get(`/products/${id}`)
         return response.data
     }
 }
