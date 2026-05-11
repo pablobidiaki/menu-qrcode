@@ -98,7 +98,7 @@ const ItemLayout = ({type, itemType}) => {
                                                              rounded-lg  
                                                              mt-4' 
                                                     onClick={() => handleItemClick(item)}>
-                                                    {texts.adicionar_pedido}
+                                                    {texts.ver_detalhes}
                                             </button>
                                         )
                                         }

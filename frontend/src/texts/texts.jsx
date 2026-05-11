@@ -19,6 +19,7 @@ const texts = {
     },
 
     adicionar_pedido: "Adicionar ao Pedido.",
+    ver_detalhes: "Ver detalhes.",
     visualizar_pedido: "Visualizar pedido.",
     item_adicionado: "Item adicionado",
     itens_adicionados: "Itens adicionados",
