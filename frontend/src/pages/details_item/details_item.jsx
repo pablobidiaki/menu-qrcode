@@ -17,6 +17,7 @@ const DetailsItem = () => {
     const [item, setItem] = useState([])
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [meatDoneness, setMeatDoneness] = useState("Ao ponto")
 
     useEffect(() => {
         const LoadItem = async () => {
@@ -36,6 +37,12 @@ const DetailsItem = () => {
             LoadItem()
 
     }, [id])
+
+    const handleAddOrderButton = (idItem) => {
+        console.log(idItem)
+        navigate("/")
+        console.log(meatDoneness)
+    }
    
     return(
         <>
@@ -50,13 +57,11 @@ const DetailsItem = () => {
             </div>
             <p className="m-1 text-gray-500 font-sans">{item.description}</p>
             <h1 className="text-center mt-6 text-2xl font-sans">{texts.titles.ingredientes}</h1>
-            <Ingredients />
+            <Ingredients item={item}/>
             <h1 className="text-center mt-6 text-2xl font-sans">{texts.titles.ponto_carne}</h1>
-            <MeatDonenessSelector />
-            <h1 className="text-center mt-6 text-2xl font-sans">{texts.titles.acompanhamentos}</h1>
-            <SideDishesContainer />
-            <div className="flex justify-center mt-6">
-                <button className="text-center text-xl w-[98%] p-2 rounded-md text-white bg-[#FF6A00] font-sans">{texts.adicionar_pedido}</button>
+            <MeatDonenessSelector onChange={setMeatDoneness}/>
+            <div className="flex justify-center mt-8">
+                <button onClick={() => handleAddOrderButton(item.id)} className="text-center text-xl w-[98%] p-2 rounded-md text-white bg-[#FF6A00] font-sans">{texts.adicionar_pedido}</button>
             </div>
         </>
     )

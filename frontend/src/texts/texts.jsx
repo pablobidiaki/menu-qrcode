@@ -15,7 +15,7 @@ const texts = {
     meat_doneness:{
         mal_passada: "Mal passada",
         ponto: "Ao ponto",
-        bem_passada: "bem passada"
+        bem_passada: "Bem passada"
     },
 
     adicionar_pedido: "Adicionar ao Pedido.",
