@@ -1,15 +1,36 @@
 import { useState } from "react"
 
+import texts from "../../texts/texts"
+import { orderService } from "../../services/orderService"
+
 const ItemModal = ({ isOpen, product, onClose }) => {
   const [quantity, setQuantity] = useState(1)
 
   if (!isOpen || !product) { return null}
 
   const handleAdd = () => {
-    // onAdd({ ...product, quantity })
-    // setQuantity(1)
+    addItemToCart()
     onClose()
   }
+
+  const addItemToCart = async () => {
+        try{
+            const payload = {
+                "items": product,
+                "table": "1",
+                "status": "pendente"
+            }
+
+            const itemToAdd = await orderService.createOrder(payload)
+            console.log("Item adicionado com sucesso!");
+
+            return itemToAdd;
+        }
+        catch(error){
+            console.error(`Error try adding item to cart! ${error}`)
+            throw error;
+        }
+    }
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm font-sans">
@@ -55,7 +76,7 @@ const ItemModal = ({ isOpen, product, onClose }) => {
                        rounded-lg  
                        mt-4'
         >
-          Adicionar ao Pedido
+          {texts.adicionar_pedido}
         </button>
       </div>
     </div>

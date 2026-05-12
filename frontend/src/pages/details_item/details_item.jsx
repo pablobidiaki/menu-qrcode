@@ -9,6 +9,7 @@ import MeatDonenessSelector from "../../components/meat_doneness_selector/meat_d
 import SideDishesContainer from "../../components/side_dishes/side_dishes_container";
 import texts from "../../texts/texts";
 import { productService } from "../../services/productService";
+import { orderService } from "../../services/orderService";
 
 const DetailsItem = () => {
     const { id } = useParams()
@@ -39,9 +40,29 @@ const DetailsItem = () => {
     }, [id])
 
     const handleAddOrderButton = (idItem) => {
-        console.log(idItem)
+        addItemToCart(idItem)
         navigate("/")
-        console.log(meatDoneness)
+    }
+
+    const addItemToCart = async (idItem) => {
+        try{
+            const item = await productService.getProductById(idItem)
+
+            const payload = {
+                "items": item,
+                "table": "1",
+                "status": "pendente"
+            }
+
+            const itemToAdd = await orderService.createOrder(payload)
+            console.log("Item adicionado com sucesso!");
+
+            return itemToAdd;
+        }
+        catch(error){
+            console.error(`Error try adding item to cart! ${error}`)
+            throw error;
+        }
     }
    
     return(
