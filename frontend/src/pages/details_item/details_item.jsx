@@ -41,7 +41,6 @@ const DetailsItem = () => {
 
     const handleAddOrderButton = (idItem) => {
         addItemToCart(idItem)
-        navigate("/")
     }
 
     const addItemToCart = async (idItem) => {
@@ -55,14 +54,15 @@ const DetailsItem = () => {
             }
 
             const itemToAdd = await orderService.createOrder(payload)
+            setItem(prevItems => [...prevItems, itemToAdd])
             console.log("Item adicionado com sucesso!");
-
-            return itemToAdd;
         }
         catch(error){
             console.error(`Error try adding item to cart! ${error}`)
             throw error;
         }
+
+        navigate("/")
     }
    
     return(

@@ -6,14 +6,14 @@ import texts from '../../texts/texts';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-const ItemLayout = ({type, itemType}) => {
+const ItemLayout = ({type, itemType, onAddItem}) => {
     const navigate = useNavigate();
 
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [selectedProduct, setSelectedProduct] = useState(null)
+    const [selectedItem, setSelectedItem] = useState(null)
 
     useEffect(() => {
         const loadProducts = async () =>{
@@ -44,13 +44,13 @@ const ItemLayout = ({type, itemType}) => {
         if (item.type !== 'Bebida' && item.type !== 'Bebida Alcoolica' && item.type !== 'Acompanhamento' )
             navigate(`/details_item/${item.id}`);
         else {
-            setSelectedProduct(item);
+            setSelectedItem(item);
             setIsModalOpen(true);
         }
     };
 
     const handleOpenModal = (product) => {
-        setSelectedProduct(product)
+        setSelectedItem(product)
         setIsModalOpen(true)
     }
 
@@ -110,8 +110,9 @@ const ItemLayout = ({type, itemType}) => {
             }
             <ItemModal 
                 isOpen={isModalOpen} 
-                product={selectedProduct} 
+                item={selectedItem} 
                 onClose={() => setIsModalOpen(false)}
+                onAddItem={onAddItem}
             />
         </>
 
