@@ -22,7 +22,6 @@ const Home = () => {
             try{
                 const items = await orderService.getOrders()
                 setItems(items.orders)
-                console.log(items.orders)
             }
             catch(error){
                 console.error(`Error try checking the orders ${error}`)
