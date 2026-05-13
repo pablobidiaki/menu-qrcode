@@ -38,7 +38,7 @@ const CartItem = ({}) => {
     return(
             <>
                 {item?.map((order) => (
-                    loading ? <LoadingSpinner message="Buscando itens no servidor..."/> :
+                    loading ? <LoadingSpinner message="Carregando itens ..."/> :
                     <div className="flex font-sans bg-gray-300 p-2.5 m-2.5 rounded-md">
                         { <img className="rounded-md w-[125px] h-[120px]" src={order?.items?.product?.images?.[0] ? order?.items?.product?.images?.[0] : order?.items?.images?.[0] } /> }
                         <div className="flex flex-col justify-between w-full ml-3">

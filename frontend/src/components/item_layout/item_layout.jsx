@@ -1,17 +1,19 @@
 import '../../App.css'
-import { productService } from '../../services/productService';
-import  ItemModal from '../item_modal/item_modal'
-import texts from '../../texts/texts';
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
+import { productService } from '../../services/productService';
+import  ItemModal from '../item_modal/item_modal'
+import texts from '../../texts/texts';
+import LoadingSpinner from '../loading_spinner/loading_spinner'
+
 const ItemLayout = ({type, itemType, onAddItem}) => {
     const navigate = useNavigate();
 
-    const [product, setProduct] = useState([])
-    const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [product, setProduct] = useState([])
+    const [loading, setLoading] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
 
@@ -58,6 +60,7 @@ const ItemLayout = ({type, itemType, onAddItem}) => {
         <>
             {
                 product.map((item) => (
+                    loading ? <LoadingSpinner message='Buscando produtos ...' /> :
                     <>
                         {
                             item.type === type && (
