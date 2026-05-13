@@ -6,8 +6,7 @@ const MeatDonenessSelector = ({onChange}) => {
 
     const options = [texts.meat_doneness.mal_passada,
                      texts.meat_doneness.ponto, 
-                     texts.meat_doneness.bem_passada
-                    ]
+                     texts.meat_doneness.bem_passada]
 
     const handleOptionButton = (option) => {
         setSelected(option)
@@ -16,6 +15,7 @@ const MeatDonenessSelector = ({onChange}) => {
 
     return (
         <>
+            <h1 className="text-center mt-6 text-2xl font-sans">{texts.titles.ponto_carne}</h1>
             <div className="flex justify-between mx-1 mt-2.5">
                 {
                     options.map((option, index) =>(
