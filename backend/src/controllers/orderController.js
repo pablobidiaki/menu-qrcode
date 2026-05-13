@@ -37,7 +37,7 @@ export const getOrderById  = async (req, res) => {
         const getOrderById = await orderService.getOrderById (idOrder)
 
         res.status(200).json({
-            message: `Order by id ${id_order}viewed`,
+            message: `Order by id ${idOrder}viewed`,
             order: getOrderById
         })
     }
@@ -69,7 +69,7 @@ export const deleteOrderById = async (req, res) => {
         const order = await orderService.deleteOrderById(idOrder)
 
         res.status(200).json({
-            message: `Order by id ${id_order} deleted`,
+            message: `Order by id ${idOrder} deleted`,
             order: order
         })
     }

@@ -12,5 +12,9 @@ export const orderService = {
     getOrderById: async (id) => {
         const response = await api.get('/orders', id)
         return response.data
+    },
+    deleteOrderById: async (id) => {
+        const response = await api.delete(`/orders/${id}`)
+        return response.data
     }
 }
