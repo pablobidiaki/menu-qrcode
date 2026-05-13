@@ -1,6 +1,8 @@
 import { useState } from "react"
 
+import toast from 'react-hot-toast'
 import texts from "../../texts/texts"
+
 import { orderService } from "../../services/orderService"
 
 const ItemModal = ({ isOpen, item, onClose, onAddItem }) => {
@@ -22,14 +24,15 @@ const ItemModal = ({ isOpen, item, onClose, onAddItem }) => {
         }
 
         const itemToAdd = await orderService.createOrder(payload)
+
         if(onAddItem)
           onAddItem(itemToAdd)
         
-        console.log("Item adicionado com sucesso!");
+        toast.success("Item adicionado ao pedido!");
     }
     catch(error){
         console.error(`Error try adding item to cart! ${error}`)
-        throw error;
+        toast.error("Erro ao tentar adicionar item ao pedido!")
     }
   } 
 

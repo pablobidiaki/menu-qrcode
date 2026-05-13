@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { CircleArrowLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import toast from 'react-hot-toast';
 import texts from "../../texts/texts";
 import Carousel from "../../components/carousel/carousel";
 import Ingredients from "../../components/ingredients/ingredients";
@@ -17,7 +18,6 @@ const DetailsItem = () => {
     const navigate = useNavigate();
 
     const [item, setItem] = useState([])
-    const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
     const [meatDoneness, setMeatDoneness] = useState(texts.meat_doneness.ponto)
 
@@ -25,12 +25,13 @@ const DetailsItem = () => {
         const LoadItem = async () => {
             try{
                 setLoading(true)
+
                 const item = await productService.getProductById(id)
                 setItem(item.product)
             }
             catch(error){
                 console.error("Erro ao carregar os produtos:", error);
-                setError("Não foi possível carregar os produtos.");
+                toast.error("Erro ao carregar os produtos.")
             }
             finally{
                 setLoading(false)
@@ -55,11 +56,11 @@ const DetailsItem = () => {
             const itemToAdd = await orderService.createOrder(payload)
             setItem(prevItems => [...prevItems, itemToAdd])
 
-            console.log("Item adicionado com sucesso!");
+            toast.success("Item adicionado ao pedido!");
         }
         catch(error){
             console.error(`Error try adding item to cart! ${error}`)
-            throw error;
+            toast.error("Erro ao tentar adicionar item ao pedido!")
         }
 
         navigate("/")

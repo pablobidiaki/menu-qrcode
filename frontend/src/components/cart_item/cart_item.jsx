@@ -1,3 +1,5 @@
+import toast from 'react-hot-toast';
+
 import { Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";   
 
@@ -16,12 +18,12 @@ const CartItem = ({onUpdate}) => {
             setItem(prevItems => prevItems.filter(item => item.id !== id))
 
             onUpdate()
-            
-            console.log(`Order by id: ${id} deleted.`)
+
+            toast.success('Item removido do pedido!');
         }
         catch(error){
             console.log(`Error try deleting order by id : ${id}. ${error}`)
-            throw error
+            toast.error('Error try deleting order.')
         }
         finally{
             setLoading(false)
