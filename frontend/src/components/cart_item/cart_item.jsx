@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { orderService } from "../../services/orderService"
 import LoadingSpinner from "../loading_spinner/loading_spinner";
 
-const CartItem = ({}) => {
+const CartItem = ({onUpdate}) => {
     const [item, setItem] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -13,8 +13,10 @@ const CartItem = ({}) => {
             setLoading(true)
 
             const itemDeleted = await orderService.deleteOrderById(id)
-            setItem(prevItems => prevItems.filter(item => item.id !== id));
+            setItem(prevItems => prevItems.filter(item => item.id !== id))
 
+            onUpdate()
+            
             console.log(`Order by id: ${id} deleted.`)
         }
         catch(error){

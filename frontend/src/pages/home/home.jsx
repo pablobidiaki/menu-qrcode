@@ -13,8 +13,8 @@ import { orderService } from '../../services/orderService';
 const Home = () => {
     const [items, setItems] = useState([])
 
-    const handleItemAdded = (novoItem) => {
-        setItems(prevItems => [...prevItems, novoItem])
+    const handleItemAdded = (newItem) => {
+        setItems(prevItems => [...prevItems, newItem])
     }
 
     useEffect(() => {
